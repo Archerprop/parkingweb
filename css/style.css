@@ -12,6 +12,7 @@
 
 body {
   font-family: "Roboto";
+  background-image: url("../sources/images/bg2.jpg");
 }
 
 /*------------console------------*/
@@ -22,6 +23,8 @@ div.console {
   margin-top: 50px;
   position: relative;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 div.console div.tittle {
   position: absolute;
