@@ -10,8 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/ico" href="../sources/images/carLogo.ico">
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../assets/css/styles.css" type="text/css">
     <script src="../js/sweetalert2.all.min.js"></script>
+    <script src="https://kit.fontawesome.com/8cd8432b8c.js" crossorigin="anonymous"></script>
 
     <title>ParkingWeb</title>
 </head>
@@ -19,21 +20,25 @@
 <body>
     <center>
         <div class="console">
-            <div class="tittle">
-                <h1>Bienvenido</h1>
-            </div>
-            <div class="textField">
-                <form method="POST" action="parkChecker.php">
-                    <input type="text" name="placa" id="placaId" placeholder="Ingrese la placa" maxlength="6"
-                        minlength="6" onkeypress="return checkplaca(event);" required>
-                    <label for="carro">Carro</label>
+
+            <form method="POST" action="parkChecker.php">
+                <div class="tittle">
+                    <h1>Bienvenido</h1>
+                </div>
+                <div class="textField">
+                    <input type="text" name="placa" id="placaId" placeholder="Placa" maxlength="6" minlength="6"
+                        onkeypress="return checkplaca(event);" required>
+                </div>
+                <div class="checkboxes">
                     <input type="checkbox" name="type[]" id="carro" onclick="javascript:selects();" value="carro">
-                    <label for="moto">Moto</label>
+                    <label for="carro" id="car"><i class="fa-solid fa-car"></i></label>
+
                     <input type="checkbox" name="type[]" id="moto" onclick="javascript:selects();" value="moto">
-                    <input type="submit" value="Confirmar">
-                </form>
-                <p id="valorP"></p>
-            </div>
+                    <label for="moto" id="bike"><i class="fa-solid fa-motorcycle"></i></label>
+                </div>
+                <input type="submit" value="ENVIAR">
+            </form>
+
         </div>
     </center>
 </body>
