@@ -71,7 +71,7 @@
             }).then(() =>{window.location.href="../index.php";});
         </script>';
     }
-    if ($_GET['este']!='n') {
+    if ($_GET['este']!='n'&&$_GET['este']=='ok') {
         echo'
         <script>
             Swal.fire({
@@ -85,6 +85,38 @@
             }).then(() =>{window.location.href="../index.php";});
         </script>
         ';
+    } else {
+        if ($_GET['este']!='n'&&$_GET['este']=='sim') {
+            echo'
+            <script>
+                Swal.fire({
+                    title: "!Error¡",
+                    text: "No hay cupo para moto en este momento.",
+                    icon: "error",
+                    showConfirmButton: false,
+                    timer: 2000,
+                    toast: true,
+                    position: "top-end"
+                }).then(() =>{window.location.href="../index.php";});
+            </script>
+            ';
+        } else {
+            if ($_GET['este']!='n'&&$_GET['este']=='sic') {
+                echo'
+                <script>
+                    Swal.fire({
+                        title: "!Error¡",
+                        text: "No hay cupo para carro en este momento.",
+                        icon: "error",
+                        showConfirmButton: false,
+                        timer: 2000,
+                        toast: true,
+                        position: "top-end"
+                    }).then(() =>{window.location.href="../index.php";});
+                </script>
+                ';
+            }
+        }
     }
     ?>
 <script src="../js/functions.js"></script>

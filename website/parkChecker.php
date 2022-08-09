@@ -100,10 +100,13 @@ if ($row['cant']>0) {
     if ($tipo == 'moto') {
         echo $rowM['cantM'];
         if ($rowM['cantM']==10) {
-            echo " Ya hay muchas motos";
+            header("Location: console.php?v=x&este=sim");
         } else {
             echo " Todavia queda espacio :D";
-            $sql = "INSERT INTO vehiculos (placas,tipo,fechIngreso) VALUES ('$placa','$tipo',NOW())";
+            date_default_timezone_set("America/Bogota");
+            $fechI = new DateTime();
+            $fechI = $fechI->format('Y-m-d H:i:s');
+            $sql = "INSERT INTO vehiculos (placas,tipo,fechIngreso) VALUES ('$placa','$tipo','$fechI')";
             if (mysqli_query($conectar, $sql)) {
                 echo "registrado :D";
                 echo "$sql";
@@ -116,10 +119,12 @@ if ($row['cant']>0) {
         if ($tipo == 'carro') {
             echo $rowC['cantC'];
             if ($rowC['cantC']==20) {
-                echo " mucho carro";
+                header("Location: console.php?v=x&este=sic");
             } else {
+                $fechIC = new DateTime();
+                $fechIC = $fechIC->format('Y-m-d H:i:s');
                 echo " sostengan hay espacio :D";
-                $sql = "INSERT INTO vehiculos (placas,tipo,fechIngreso) VALUES ('$placa','$tipo',NOW())";
+                $sql = "INSERT INTO vehiculos (placas,tipo,fechIngreso) VALUES ('$placa','$tipo','$fechIC')";
                 if (mysqli_query($conectar, $sql)) {
                     echo "registrado :D";
                     echo "$sql";
