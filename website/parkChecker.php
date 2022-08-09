@@ -1,5 +1,6 @@
 <?php
 
+include "mcript.php";
 include_once('../connect.php');
 var_dump($_POST);
 
@@ -7,8 +8,6 @@ $placa = strtoupper($_POST['placa']);
 if ($_REQUEST['type']) {
     $tipo = $_REQUEST['type'];
     $tipo = implode(",", $tipo);
-} else {
-    header("Location: console.php");
 }
 
 
@@ -40,16 +39,23 @@ if ($row['cant']>0) {
                 if ($numD>50) {
                     $valorE = $valorC-$numD+100;
                     echo " ".$valorE;
+                    $valorE = $encriptar($valorE);  //Encriptar el valor a pagar
+                    echo $valorE;
+                    header("Location: console.php?v=$valorE&este=n");
                 } else {
                     if ($numD<50) {
                         $valorA = $valorC-$numD;
                         echo " ".$valorA;
+                        $valorA = $encriptar($valorA);  //Encriptar el valor a pagar
+                        header("Location: console.php?v=$valorA&este=n");
                     }
                 }
             }
         } else {
             $valorC = 100;
             echo " ".$valorC;
+            $valorC = $encriptar($valorC);
+            header("Location: console.php?v=$valorC&este=n");
         }
     } else {
         if ($vehiculo['tipo']=='carro') {
@@ -61,18 +67,24 @@ if ($row['cant']>0) {
                     $numD= (int)(($valorC-(100*(int)$numC)));
                     echo " ".$numD;
                     if ($numD>50) {
-                        $valorE = $valorC-$numD+100;
-                        echo " ".$valorE;
+                        $valorED = $valorC-$numD+100;
+                        echo " ".$valorED;
+                        $valorED = $encriptar($valorED);  //Encriptar el valor a pagar
+                        header("Location: console.php?v=$valorED&este=n");
                     } else {
                         if ($numD<50) {
-                            $valorA = $valorC-$numD;
-                            echo " ".$valorA;
+                            $valorAD = $valorC-$numD;
+                            echo " ".$valorAD;
+                            $valorAD = $encriptar($valorAD);  //Encriptar el valor a pagar
+                            header("Location: console.php?v=$valorAD&este=n");
                         }
                     }
                 }
             } else {
                 $valorC = 100;
                 echo " ".$valorC;
+                $valorC = $encriptar($valorC);
+                header("Location: console.php?v=$valorC&este=n");
             }
         }
     }
@@ -95,6 +107,7 @@ if ($row['cant']>0) {
             if (mysqli_query($conectar, $sql)) {
                 echo "registrado :D";
                 echo "$sql";
+                header("Location: console.php?v=x&este=ok");
             } else {
                 echo "Error D:";
             }
@@ -110,6 +123,7 @@ if ($row['cant']>0) {
                 if (mysqli_query($conectar, $sql)) {
                     echo "registrado :D";
                     echo "$sql";
+                    header("Location: console.php?v=x&este=ok");
                 } else {
                     echo "Error D:";
                 }
